@@ -9,14 +9,16 @@ public class Response {
     List<String> dprops;
     List<Map<String,Object>> fields;
     List<String> col;
+    String sqlQuery;
     String error;
 
-    public Response(List<String> classes, List<String> oprops, List<String> dprops, List<Map<String, Object>> fields, List<String> col, String error) {
+    public Response(List<String> classes, List<String> oprops, List<String> dprops, List<Map<String, Object>> fields, List<String> col, String sqlQuery, String error) {
         this.classes = classes;
         this.oprops = oprops;
         this.dprops = dprops;
         this.fields = fields;
         this.col = col;
+        this.sqlQuery = sqlQuery;
         this.error = error;
     }
 
@@ -44,14 +46,6 @@ public class Response {
         this.dprops = dprops;
     }
 
-    public String getError() {
-        return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
-    }
-
     public List<Map<String, Object>> getFields() {
         return fields;
     }
@@ -66,5 +60,21 @@ public class Response {
 
     public void setCol(List<String> col) {
         this.col = col;
+    }
+
+    public String getSqlQuery() {
+        return sqlQuery;
+    }
+
+    public void setSqlQuery(String sqlQuery) {
+        this.sqlQuery = sqlQuery;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

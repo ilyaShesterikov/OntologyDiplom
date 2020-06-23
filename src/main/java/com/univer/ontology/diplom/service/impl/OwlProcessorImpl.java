@@ -37,7 +37,7 @@ public class OwlProcessorImpl implements OwlProcessor {
         List<String> classes = (List<String>)owlModel.getUserDefinedOWLNamedClasses().stream().map(c -> ((OWLNamedClass)c).getBrowserText()).collect(Collectors.toList());
         List<String> dprops = (List<String>)owlModel.getUserDefinedOWLDatatypeProperties().stream().map(c -> ((OWLProperty)c).getBrowserText()).collect(Collectors.toList());
         List<String> oprops = (List<String>)owlModel.getUserDefinedOWLObjectProperties().stream().map(c -> ((OWLProperty)c).getBrowserText()).collect(Collectors.toList());
-        return new Response(classes, oprops, dprops, null,null,null);
+        return new Response(classes, oprops, dprops, null,null,null, null);
     }
 
 
@@ -156,7 +156,7 @@ public class OwlProcessorImpl implements OwlProcessor {
     }
 
     @Override
-    public String sparqlToSql(String file, String queryString) throws DataAccessException, Exception {
+    public String    sparqlToSql(String file, String queryString) throws DataAccessException, Exception {
 //        queryString = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
 //                "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
 //                "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +

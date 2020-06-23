@@ -37,7 +37,7 @@ public class Controller {
 
         try {
             dataBaseService.createDB(owlProcessor.makeCreateCommands(file));
-            return ResponseEntity.status(HttpStatus.OK).body(new Response(null,null,null,null,null,null));
+            return ResponseEntity.status(HttpStatus.OK).body(new Response(null,null,null,null,null, null,null));
         } catch (Exception e) {
             return ResponseEntity.ok("not ok");
         }
@@ -48,7 +48,7 @@ public class Controller {
 
         try {
             dataBaseService.insertData(owlProcessor.makeInsertCommands(file));
-            return ResponseEntity.status(HttpStatus.OK).body(new Response(null,null,null,null,null,null));
+            return ResponseEntity.status(HttpStatus.OK).body(new Response(null,null,null,null,null,null,null));
         } catch (Exception e) {
             return ResponseEntity.ok("not ok");
         }
@@ -61,7 +61,7 @@ public class Controller {
             return ResponseEntity.status(HttpStatus.OK).body(owlProcessor.getNodes(filename));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Response(null,null,null,null,null, e.getMessage()));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Response(null,null,null,null,null,null, e.getMessage()));
         }
     }
 
@@ -69,13 +69,13 @@ public class Controller {
     public ResponseEntity<Response> executeSparqlQuery(@RequestParam("file") String file, @RequestParam("query") String query) {
         try {
             String sqlQuery = owlProcessor.sparqlToSql(file, query);
-            List<String> f=QueryFactory.create(query).getResultVars();
+            List<String> f = QueryFactory.create(query).getResultVars();
 
             List<Map<String,Object>> o = dataBaseService.executeQuery(sqlQuery);
-            return ResponseEntity.status(HttpStatus.OK).body(new Response(null,null,null,o,f, null));
+            return ResponseEntity.status(HttpStatus.OK).body(new Response(null,null,null, o, f, sqlQuery, null));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Response(null,null,null,null,null, e.getMessage()));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Response(null,null,null,null,null,null, e.getMessage()));
         }
     }
 }
