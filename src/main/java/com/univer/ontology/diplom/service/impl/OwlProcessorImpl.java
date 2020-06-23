@@ -86,9 +86,6 @@ public class OwlProcessorImpl implements OwlProcessor {
 
         System.out.println( (List<OWLIndividual>)owlModel.getUserDefinedRDFIndividuals(true));
 
-
-
-
         for (OWLNamedClass clazz : classes) {
             String createString =
                     "CREATE TABLE " + clazz.getBrowserText()
